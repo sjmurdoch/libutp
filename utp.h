@@ -94,6 +94,8 @@ struct UTPSocket *UTP_Create(SendToProc *send_to_proc, void *send_to_userdata,
 
 // Setup the callbacks - must be done before connect or on incoming connection
 void UTP_SetCallbacks(struct UTPSocket *socket, struct UTPFunctionTable *func, void *userdata);
+// Only change the userdata associated with a uTP socket
+void UTP_SetUserdata(struct UTPSocket *socket, void *userdata);
 
 // Valid options include SO_SNDBUF, SO_RCVBUF and SO_UTPVERSION
 bool UTP_SetSockopt(struct UTPSocket *socket, int opt, int val);

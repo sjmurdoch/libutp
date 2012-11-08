@@ -2377,6 +2377,13 @@ UTPSocket *UTP_Create(SendToProc *send_to_proc, void *send_to_userdata, const st
 	return conn;
 }
 
+void UTP_SetUserdata(UTPSocket *conn, void *userdata)
+{
+	assert(conn);
+
+	conn->userdata = userdata;
+}
+
 void UTP_SetCallbacks(UTPSocket *conn, UTPFunctionTable *funcs, void *userdata)
 {
 	assert(conn);
