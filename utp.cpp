@@ -89,7 +89,6 @@ uint32 g_current_ms;
 //   6: Port (including colon)
 //   1: Terminating null byte
 char addrbuf[65];
-char addrbuf2[65];
 #define addrfmt(x, s) x.fmt(s, sizeof(s))
 
 #if (defined(__SVR4) && defined(__sun))
