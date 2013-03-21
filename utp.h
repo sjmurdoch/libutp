@@ -77,6 +77,10 @@ struct UTPFunctionTable {
 	UTPOnOverheadProc *on_overhead;
 };
 
+struct UTPGlobalStats {
+    uint32 _nraw_recv[5];   // total packets recieved less than 300/600/1200/MTU bytes fpr all connections (global)
+    uint32 _nraw_send[5];   // total packets sent less than 300/600/1200/MTU bytes for all connections (global)
+};
 
 // The uTP socket layer calls this when a new incoming uTP connection is established
 // this implies writability
@@ -151,12 +155,9 @@ void UTP_GetStats(struct UTPSocket *socket, UTPStats *stats);
 // point the socket will change to the UTP_STATE_DESTROYING state.
 void UTP_Close(struct UTPSocket *socket);
 
-struct UTPGlobalStats {
-	uint32 _nraw_recv[5];	// total packets recieved less than 300/600/1200/MTU bytes fpr all connections (global)
-	uint32 _nraw_send[5];	// total packets sent less than 300/600/1200/MTU bytes for all connections (global)
-};
-
 void UTP_GetGlobalStats(struct UTPGlobalStats *stats);
+
+void UTP_UpdateGlobalState(struct UTPGlobalState *newState);
 
 #ifdef __cplusplus
 }

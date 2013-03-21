@@ -147,7 +147,7 @@ void test_manager::Flush(uint32 start_time, uint32 max_time)
 		TestUdpOutgoing *uo = _send_buffer[i];
 //		utassert(uo);
 
-		if ((uint32)uo->timestamp > g_current_ms) continue;
+		if ((uint32)uo->timestamp > global_state->g_current_ms) continue;
 
 		if (_receiver) {
 			// Lookup the right UTP socket that can handle this message
