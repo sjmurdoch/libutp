@@ -21,6 +21,6 @@ enum bandwidth_type_t {
 #define snprintf _snprintf
 #endif
 
-#define g_log_utp 0
-#define g_log_utp_verbose 0
+#define g_log_utp 1
+#define g_log_utp_verbose 1
 void utp_log(char const* fmt, ...);
