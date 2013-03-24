@@ -455,6 +455,9 @@ int main()
 	utassert(wrapping_compare_less(0x1, 0x0) == false);
 	utassert(wrapping_compare_less(0x1, 0x1) == false);
 
+	UTPGlobalState *global_state = UTP_AllocGlobalState();
+	UTP_UpdateGlobalState(global_state);
+
 	send_udp_manager = new test_manager;
 	receive_udp_manager = new test_manager;
 	send_udp_manager->bind(receive_udp_manager);
@@ -483,6 +486,8 @@ int main()
 	_ test_transfer(use_utp_v1 | simulate_packetloss | simulate_packetreorder | heavy_loss);
 	_ printf("\nTesting transfer using utp v1 with simulated packet reorder\n");
 	_ test_transfer(use_utp_v1 | simulate_packetreorder);
+
+	UTP_FreeGlobalState(global_state);
 
 	return 0;
 }

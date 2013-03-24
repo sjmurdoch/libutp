@@ -2832,7 +2832,16 @@ void UTP_GetGlobalStats(UTPGlobalStats *stats)
 }
 
 void UTP_UpdateGlobalState(UTPGlobalState *newState) {
-    global_state = newState;
+	global_state = newState;
+}
+
+void UTP_FreeGlobalState(UTPGlobalState *state) {
+	delete state;
+}
+
+UTPGlobalState *UTP_AllocGlobalState() {
+    return new UTPGlobalState();
+}
 
 uint32 UTP_GetCurrentMs() {
 	return global_state->g_current_ms;

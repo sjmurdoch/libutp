@@ -160,6 +160,8 @@ void UTP_Close(struct UTPSocket *socket);
 void UTP_GetGlobalStats(struct UTPGlobalStats *stats);
 
 void UTP_UpdateGlobalState(struct UTPGlobalState *newState);
+void UTP_FreeGlobalState(UTPGlobalState *state);
+UTPGlobalState *UTP_AllocGlobalState();
 
 uint32 UTP_GetCurrentMs();
 
