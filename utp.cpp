@@ -341,7 +341,7 @@ void no_state(void *socket, int state) {}
 void no_error(void *socket, int errcode) {}
 void no_overhead(void *socket, bool send, size_t count, int type) {}
 
-UTPFunctionTable zero_funcs = {
+const UTPFunctionTable zero_funcs = {
 	&no_read,
 	&no_write,
 	&no_rb_size,
@@ -2383,9 +2383,10 @@ void UTP_SetCallbacks(UTPSocket *conn, UTPFunctionTable *funcs, void *userdata)
 	assert(conn);
 
 	if (funcs == NULL) {
-		funcs = &zero_funcs;
+		conn->func = zero_funcs;
+	} else {
+		conn->func = *funcs;
 	}
-	conn->func = *funcs;
 	conn->userdata = userdata;
 }
 
