@@ -161,6 +161,8 @@ void UTP_GetGlobalStats(struct UTPGlobalStats *stats);
 
 void UTP_UpdateGlobalState(struct UTPGlobalState *newState);
 
+uint32 UTP_GetCurrentMs();
+
 #ifdef __cplusplus
 }
 #endif

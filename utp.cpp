@@ -2833,6 +2833,9 @@ void UTP_GetGlobalStats(UTPGlobalStats *stats)
 
 void UTP_UpdateGlobalState(UTPGlobalState *newState) {
     global_state = newState;
+
+uint32 UTP_GetCurrentMs() {
+	return global_state->g_current_ms;
 }
 
 // Close the UTP socket.

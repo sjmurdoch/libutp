@@ -28,8 +28,6 @@ typedef sockaddr_storage SOCKADDR_STORAGE;
 #define utassert assert
 #define utassert_failmsg(expr,failstmt) if (!(expr)) { failstmt; utassert(#expr); }
 
-extern uint32 g_current_ms;
-
 struct utp_socket {
 
 	utp_socket(UTPSocket* s);
@@ -147,7 +145,7 @@ void test_manager::Flush(uint32 start_time, uint32 max_time)
 		TestUdpOutgoing *uo = _send_buffer[i];
 //		utassert(uo);
 
-		if ((uint32)uo->timestamp > global_state->g_current_ms) continue;
+		if ((uint32)uo->timestamp > UTP_GetCurrentMs()) continue;
 
 		if (_receiver) {
 			// Lookup the right UTP socket that can handle this message
@@ -192,7 +190,7 @@ void test_manager::Send(const byte *p, size_t len, const struct sockaddr *to, so
 	}
 
 	TestUdpOutgoing *q = (TestUdpOutgoing*)malloc(sizeof(TestUdpOutgoing) - 1 + len);
-	q->timestamp = g_current_ms + delay;
+	q->timestamp = UTP_GetCurrentMs() + delay;
 	memcpy(&q->addr, to, tolen);
 	q->addrlen = tolen;
 	q->len = len;
